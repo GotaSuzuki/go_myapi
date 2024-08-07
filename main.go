@@ -3,6 +3,8 @@ package main
 import (
 	"log"
 	"net/http"
+
+	"github.com/GotaSuzuki/go_myapi/handlers"
 )
 
 func main() {
