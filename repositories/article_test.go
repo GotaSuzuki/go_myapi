@@ -5,14 +5,14 @@ import (
 
 	"github.com/GotaSuzuki/go_myapi/models"
 	"github.com/GotaSuzuki/go_myapi/repositories"
-	"github.com/yourname/reponame/repositories/testdata"
+	"github.com/GotaSuzuki/go_myapi/repositories/testdata"
 
 	// "github.com/GotaSuzuki/go_myapi/handlers"
 	_ "github.com/go-sql-driver/mysql"
 )
 
 func TestSelectArticleList(t *testing.T) {
-	expectedNum := 3
+	expectedNum := len(testdata.ArticleTestData)
 	got, err := repositories.SelectArticleList(testDB, 1)
 	if err != nil {
 		t.Fatal(err)
@@ -30,22 +30,10 @@ func TestSelectArticleDetail(t *testing.T) {
 	}{
 		{
 			testTitle: "subtest1",
-			expected: models.Article{
-				ID:       1,
-				Title:    "firstPost",
-				Contents: "This is my first blog",
-				UserName: "saki",
-				NiceNum:  4,
-			},
+			expected:  testdata.ArticleTestData[0],
 		}, {
 			testTitle: "subtest2",
-			expected: models.Article{
-				ID:       2,
-				Title:    "2nd",
-				Contents: "Second blog post",
-				UserName: "saki",
-				NiceNum:  4,
-			},
+			expected:  testdata.ArticleTestData[1],
 		},
 	}
 
@@ -109,7 +97,7 @@ func TestUpdateNiceNum(t *testing.T) {
 
 	got, _ := repositories.SelectArticleDetail(testDB, articleId)
 
-	if got.NiceNum-testdata.ArticleTestData[articleId-1] != 1 {
+	if got.NiceNum-testdata.ArticleTestData[articleId-1].NiceNum != 1 {
 		t.Errorf("fail to update nice num: expected %d but got %d\n", testdata.ArticleTestData[articleId].NiceNum,
 			got.NiceNum)
 	}
