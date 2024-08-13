@@ -15,7 +15,7 @@ var ArticleTestData = []models.Article{
 		Title:    "2nd",
 		Contents: "Second blog post",
 		UserName: "saki",
-		NiceNum:  4,
+		NiceNum:  2,
 	},
 }
 

@@ -70,7 +70,7 @@ func TestInsertArticle(t *testing.T) {
 		UserName: "saki",
 	}
 
-	expectedArticleNum := 5
+	expectedArticleNum := 10
 	newArticle, err := repositories.InsertArticle(testDB, article)
 	if err != nil {
 		t.Error(err)
@@ -89,7 +89,7 @@ func TestInsertArticle(t *testing.T) {
 }
 
 func TestUpdateNiceNum(t *testing.T) {
-	articleId := 1
+	articleId := 5
 	err := repositories.UpdateNiceNum(testDB, articleId)
 	if err != nil {
 		t.Fatal(err)
